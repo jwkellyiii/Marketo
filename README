@@ -1,7 +1,32 @@
 = Marketo
 
+== Setup
+
+Create a config/marketo.yml file:
+access_key: "bigcorp1_461839624B16E06BA2D663"
+secret_key: "899756834129871744AAEE88DDCC77CDEEDEC1AAAD66"
+
+Be sure to substitute your Marketo access_key and secret_key for the values above.
 
 == Usage
+
+Create anew Marketo Client passing your access_key and secret_key from your marketo.yml file.
+client = Marketo::Client.new_marketo_client(access_key, secret_key)
+
+To get a user by id use the client created above. Call get_lead_by_id passing an IDNUM. This will return a lead record.
+client.get_lead_by_id(IDNUM)
+
+To get a user by email address use the client created above. Call get_lead_by_email passing an EMAIL_ADDR. This will return a lead record.
+client.get_lead_by_email(EMAIL_ADDR)
+
+To sync a lead with Marketo. Use the client created above. Call sync_lead passing: email_address, the Marketo Cookie, and a hash of attributes.
+The Marketo cookie: request.cookies["_mkto_trk"]
+client.sync_lead(USER[:email], COOKIE, {"FirstName"=>USER[:first_name],
+                                        "LastName"=>USER[:last_name],
+                                        "Company"=>"Backupify"})
+
+To add a lead to a Marketo List. Use the client created above. Call add_lead_to_list passing: the lead records IDNUM and the list name.
+client.add_lead_to_list(IDNUM, "Inbound Signups")
 
 
 == Note on Patches/Pull Requests
