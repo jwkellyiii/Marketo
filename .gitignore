@@ -1,0 +1,14 @@
+*.gem
+.bundle
+Gemfile.lock
+pkg/*
+
+## MAC OS
+.DS_Store
+
+## TEXTMATE
+*.tmproj
+tmtags
+
+## RUBYMINE
+.idea
