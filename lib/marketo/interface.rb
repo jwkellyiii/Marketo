@@ -11,6 +11,8 @@ module Marketo
 
     def send_request(namespace, body)
       response = @client.request(namespace) do |soap|
+        soap.use_ssl = true
+        soap.ssl_version = "SSLv3"
         soap.namespaces["xmlns:ns1"] = "http://www.marketo.com/mktows/"
         soap.body = body
         soap.header["ns1:AuthenticationHeader"] = @header.to_hash
