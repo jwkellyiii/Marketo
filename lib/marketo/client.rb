@@ -10,7 +10,7 @@ module Marketo
 
     def self.new_marketo_client(access_key, secret_key)
       HTTPI.adapter = :net_http
-      @http = HTTPI::Request.new("https://na-l.marketo.com/soap/mktows/1_6")
+      request = HTTPI::Request.new("https://na-l.marketo.com/soap/mktows/1_6")
       HTTPI.get request do |http|
         http.use_ssl= true
         http.ssl_version = "SSLv3"
